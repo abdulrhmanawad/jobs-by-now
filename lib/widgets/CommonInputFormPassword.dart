@@ -19,7 +19,15 @@ class CommonInputFormPassword extends StatelessWidget {
       alignment: Alignment.center,
       child: TextFormField(
         controller: textEditingController,
-        obscureText: isShow,
+        validator:(val){
+          if(val.isEmpty||val.length<6){
+            return "please Enter your password";
+          }
+          else{
+            return null;
+          }
+        } ,
+        obscureText: true,
         decoration: InputDecoration(
           suffixIcon: IconButton(icon:Icon(isShow?Icons.visibility:Icons.visibility_off) ,onPressed:(){
             checkState(isShow);

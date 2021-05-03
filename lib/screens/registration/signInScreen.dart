@@ -14,6 +14,7 @@ class _SignInScreenState extends State<SignInScreen> {
   TextEditingController passwordTextEditingController;
   String email;
   String password;
+  final _formKey=GlobalKey<FormState>();
   @override
   void initState() {
     // TODO: implement initState
@@ -30,6 +31,7 @@ class _SignInScreenState extends State<SignInScreen> {
   }
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
@@ -53,65 +55,66 @@ Center(child: SvgPicture.asset("assets/logo.svg",width:MediaQuery.of(context).si
                   Container(
                     width: MediaQuery.of(context).size.width,
                     margin: EdgeInsets.symmetric(vertical: 20,horizontal: 20.0),
-
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Sign In",style: GoogleFonts.montserrat(fontSize:Theme.of(context).textTheme.headline4.fontSize,),textAlign: TextAlign.justify,),
-                      SizedBox(height: 20),
-                      Text("Hi there! Nice to see you again.",style: GoogleFonts.montserrat(fontSize:Theme.of(context).textTheme.subtitle1.fontSize),),
-                      SizedBox(height: 20),
-                      CommonInputForm(labelText: "Email",textEditingController: emailTextEditingController,),
-                      SizedBox(height: 15),
-                      CommonInputFormPassword(labelText: "Password",textEditingController: passwordTextEditingController,),
-                      SizedBox(height: 20),
-                      Center(
-                        child: MaterialButton(
-                          onPressed: (){
-                          setState(() {
-                            email=emailTextEditingController.text;
-                            password=passwordTextEditingController.text;
-                          });
-
-                          print("email:$email\n password:$password");
-                        },
-                          minWidth: MediaQuery.of(context).size.width,
-                          height: 48.0,
-                          color: Color(0xff1FB9D1),
-                         shape: RoundedRectangleBorder(
-                           borderRadius: BorderRadius.all(Radius.circular(8.0))
-                         ),
-                          child: Text(
-                              "Sign In",
-                              style:GoogleFonts.montserrat(textStyle: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Colors.white))
+                    child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Sign In",style: GoogleFonts.montserrat(fontSize:Theme.of(context).textTheme.headline4.fontSize,),textAlign: TextAlign.justify,),
+                        SizedBox(height: 20),
+                        Text("Hi there! Nice to see you again.",style: GoogleFonts.montserrat(fontSize:Theme.of(context).textTheme.subtitle1.fontSize),),
+                        SizedBox(height: 20),
+                        CommonInputForm(labelText: "Email",textEditingController: emailTextEditingController,),
+                        SizedBox(height: 15),
+                        CommonInputFormPassword(labelText: "Password",textEditingController: passwordTextEditingController,),
+                        SizedBox(height: 20),
+                        Center(
+                          child: MaterialButton(
+                            onPressed: (){
+                              if(_formKey.currentState.validate()){
+                                setState(() {
+                              email=emailTextEditingController.text;
+                              password=passwordTextEditingController.text;
+                            });
+                            print("email:$email\n password:$password");}},
+                            minWidth: MediaQuery.of(context).size.width,
+                            height: 48.0,
+                            color: Color(0xff1FB9D1),
+                           shape: RoundedRectangleBorder(
+                             borderRadius: BorderRadius.all(Radius.circular(8.0))
+                           ),
+                            child: Text(
+                                "Sign In",
+                                style:GoogleFonts.montserrat(textStyle: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Colors.white))
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: 15),
-                      Center(child: Text("or use one of your social profiles",style: GoogleFonts.montserrat(fontSize:Theme.of(context).textTheme.subtitle2.fontSize,fontWeight: FontWeight.w300),)),
-                      SizedBox(height: 15),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SocialButton(labelText: "Google",color: Colors.red,),
-                          SizedBox(width: 10,),
-                          SocialButton(labelText: "Facebook",color: Color(0xff395697),)
-                        ],
-                      ),
-                      SizedBox(height: 15),
-                      Row(
-                        children: [
-                          Text("Forgot Password ?",style: GoogleFonts.montserrat(fontSize:Theme.of(context).textTheme.subtitle2.fontSize,fontWeight: FontWeight.w300),),
-                          SizedBox(width: 5,),
-                          GestureDetector(
-                            onTap: (){
-                              Navigator.of(context).push(MaterialPageRoute(builder:(context)=>SignUpScreen()));
-                            },
-                              child: Text("Sign up",style: GoogleFonts.montserrat(fontSize:Theme.of(context).textTheme.subtitle2.fontSize,fontWeight: FontWeight.w400,color: Color(0xff1FB9D1)),)),
+                        SizedBox(height: 15),
+                        Center(child: Text("or use one of your social profiles",style: GoogleFonts.montserrat(fontSize:Theme.of(context).textTheme.subtitle2.fontSize,fontWeight: FontWeight.w300),)),
+                        SizedBox(height: 15),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SocialButton(labelText: "Google",color: Colors.red,),
+                            SizedBox(width: 10,),
+                            SocialButton(labelText: "Facebook",color: Color(0xff395697),)
+                          ],
+                        ),
+                        SizedBox(height: 15),
+                        Row(
+                          children: [
+                            Text("Forgot Password ?",style: GoogleFonts.montserrat(fontSize:Theme.of(context).textTheme.subtitle2.fontSize,fontWeight: FontWeight.w300),),
+                            SizedBox(width: 5,),
+                            GestureDetector(
+                              onTap: (){
+                                Navigator.of(context).push(MaterialPageRoute(builder:(context)=>SignUpScreen()));
+                              },
+                                child: Text("Sign up",style: GoogleFonts.montserrat(fontSize:Theme.of(context).textTheme.subtitle2.fontSize,fontWeight: FontWeight.w400,color: Color(0xff1FB9D1)),)),
 
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),),
                   Center(child: Container(
                       width: MediaQuery.of(context).size.width-100,

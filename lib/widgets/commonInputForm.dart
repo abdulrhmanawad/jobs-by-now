@@ -13,10 +13,20 @@ class CommonInputForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-
       alignment: Alignment.center,
       child: TextFormField(
         controller: textEditingController,
+        validator: (val){
+          if(val.isEmpty){
+            return "the Field Can't be Empty";
+          }else if(isNumber&&val.length<9){
+            return "please Enter the valid mobile number";
+          }else{
+            return null;
+          }
+
+
+        },
         keyboardType: isNumber?TextInputType.number:TextInputType.text,
         decoration: InputDecoration(
           focusColor:  Color(0xff1FB9D1),
