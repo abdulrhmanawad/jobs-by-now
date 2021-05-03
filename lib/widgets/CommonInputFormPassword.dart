@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jobsbynow/provider.dart';
+import 'package:provider/provider.dart';
 class CommonInputFormPassword extends StatelessWidget {
-
-  CommonInputFormPassword({this.labelText,this.textEditingController,this.isShow=false});
-
   final String labelText;
   final TextEditingController textEditingController;
-  final bool isShow;
-
-
-  void checkState(bool state){
-    state=!state;
-  }
+  CommonInputFormPassword({this.labelText,this.textEditingController});
   @override
   Widget build(BuildContext context) {
+var provider=Provider.of<StateScreen>(context);
     return Container(
       width: MediaQuery.of(context).size.width,
       alignment: Alignment.center,
@@ -27,10 +22,10 @@ class CommonInputFormPassword extends StatelessWidget {
             return null;
           }
         } ,
-        obscureText: true,
+        obscureText: provider.status,
         decoration: InputDecoration(
-          suffixIcon: IconButton(icon:Icon(isShow?Icons.visibility:Icons.visibility_off) ,onPressed:(){
-            checkState(isShow);
+          suffixIcon: IconButton(icon:Icon(provider.status?Icons.visibility:Icons.visibility_off) ,onPressed:(){
+            provider.statusValue=!provider.status;
           },),
           border: OutlineInputBorder(
             borderRadius:
