@@ -18,7 +18,7 @@ class CommonInputForm extends StatelessWidget {
         controller: textEditingController,
         validator: (val){
           if(val.isEmpty){
-            return "the Field Can't be Empty";
+            return "Field Can't be Empty";
           }else if(isNumber&&val.length<9){
             return "please Enter the valid mobile number";
           }else{

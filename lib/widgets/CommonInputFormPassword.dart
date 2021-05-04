@@ -22,7 +22,7 @@ var provider=Provider.of<StateScreen>(context);
             return null;
           }
         } ,
-        obscureText: provider.status,
+        obscureText: !provider.status,
         decoration: InputDecoration(
           suffixIcon: IconButton(icon:Icon(provider.status?Icons.visibility:Icons.visibility_off) ,onPressed:(){
             provider.statusValue=!provider.status;
