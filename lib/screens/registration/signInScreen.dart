@@ -14,6 +14,12 @@ class _SignInScreenState extends State<SignInScreen> {
   TextEditingController passwordTextEditingController;
   String email;
   String password;
+  bool checked=false;
+  void checkStatus(){
+    setState(() {
+      checked=!checked;
+    });
+  }
   final _formKey=GlobalKey<FormState>();
   @override
   void initState() {
@@ -66,7 +72,7 @@ Center(child: SvgPicture.asset("assets/logo.svg",width:MediaQuery.of(context).si
                         SizedBox(height: 20),
                         CommonInputForm(labelText: "Email",textEditingController: emailTextEditingController,),
                         SizedBox(height: 15),
-                        CommonInputFormPassword(labelText: "Password",textEditingController: passwordTextEditingController,),
+                        CommonInputFormPassword(labelText: "Password",textEditingController: passwordTextEditingController,checked: checked,onPressed: checkStatus,),
                         SizedBox(height: 20),
                         Center(
                           child: MaterialButton(

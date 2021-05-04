@@ -22,6 +22,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController confirmPasswordTxtEditingController;
   String first, last, code, mobile, email, password, confirmPassword;
   final _formKey=GlobalKey<FormState>();
+  bool checked=false;
+  void checkStatus(){
+    setState(() {
+      checked=!checked;
+    });
+  }
   @override
   void initState() {
     // TODO: implement initState
@@ -153,6 +159,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         height: 15,
                       ),
                       CommonInputFormPassword(
+                        onPressed: checkStatus,
+                        checked: checked,
                         labelText: "password",
                         textEditingController: passwordTxtEditingController,
                       ),
@@ -160,6 +168,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         height: 15,
                       ),
                       CommonInputFormPassword(
+                        onPressed: checkStatus,
+                        checked: checked,
                         labelText: "Confirm Password",
                         textEditingController: confirmPasswordTxtEditingController,
                       ),
