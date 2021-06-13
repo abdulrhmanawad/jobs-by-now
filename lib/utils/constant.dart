@@ -72,3 +72,4 @@ List<Locale> locales=[
   Locale("vi"),
   Locale("zh")
 ];
+const String companyImage="https://images.unsplash.com/photo-1554384645-13eab165c24b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=375&q=80";
